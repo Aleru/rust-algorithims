@@ -1,1 +1,1 @@
-/home/ryan/stnalgo/target/debug/stnalgo: /home/ryan/stnalgo/src/main.rs
+/home/ryan/rust-algorithims/target/debug/stnalgo: /home/ryan/rust-algorithims/src/main.rs

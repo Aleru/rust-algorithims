@@ -1,4 +1,4 @@
-
+//hello it works!
 struct ArrAndCount{
 	vec: Vec<i32>,
 	count: usize,
