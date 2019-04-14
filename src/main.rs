@@ -4,16 +4,40 @@ struct ArrAndCount{
 	count: usize,
 }
 
+fn build_ArrAndCount(vec: Vec<i32>, count: usize)->ArrAndCount{
+ArrAndCount{
+	vec:vec,
+	count:count
+}
+}
 
-//this function is used in merge_and_count_split_inv
-// its purpose is to iterate through the rest of the other vector 
-// after we have reached the end of a vector
-/*fn end_of_vec(mut given_vec: Vec<i32>, mut sorted_vec: Vec<i32>, index_of_other_arr: i32, total_ele_in_arr: i32){
-	for _x in index_of_other_arr .. total_ele_in_arr{
-		sorted_arr.push(given_arr[_x])
+fn sort_and_count_inv(mut v1: Vec<i32>) -> ArrAndCount{
+	let mut n = v1.len();
+	
+	if n < 2 {
+		 build_ArrAndCount(v1,0)
+	
 	}
-}*/
-fn merge_and_count_split_inv( v1: Vec<i32>, v2: Vec<i32>) -> ArrAndCount {
+	else{
+		
+		let mut left_inv = sort_and_count_inv(v1[0..n/2].to_vec());
+		let mut right_inv = sort_and_count_inv(v1[n/2..n].to_vec());
+		let mut merged_inv = merge_and_count_split_inv(left_inv.vec,right_inv.vec);
+
+		build_ArrAndCount(merged_inv.vec, merged_inv.count + left_inv.count+right_inv.count)
+
+
+		
+	}
+	
+	
+	
+
+	}
+
+
+
+fn merge_and_count_split_inv( v1:  Vec<i32>, v2: Vec<i32>) ->   ArrAndCount  {
 	let (mut i, mut j, mut split_inv) = (0,0,0);
 	let n = v1.len() * 2;
 	let mut v3: Vec<i32> = Vec::new();
