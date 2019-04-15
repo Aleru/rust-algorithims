@@ -1,4 +1,10 @@
-//hello it works!
+use std::fs;
+use std::io;
+use std::io::prelude::*;
+use std::fs::File;
+use std::io::BufReader;
+
+
 struct ArrAndCount{
 	vec: Vec<i32>,
 	count: usize,
@@ -85,17 +91,28 @@ fn merge_and_count_split_inv( v1:  Vec<i32>, v2: Vec<i32>) ->   ArrAndCount  {
 
 
 
-fn main() {
-let  vec1 = vec![1,2,3];
-let  vec2 = vec![4,5,6];
+fn main() -> io::Result<()> {
+    let f = File::open("algo.txt")?;
+    let reader = BufReader::new(f);
 
+    let mut vec: Vec<i32> = Vec::new();
 
+    for line in reader.lines() {
+    	let l = match line{
+    		Ok(str) => str,
+    		Err(error) => {
+    			panic!("there was an error parsing the line in the opened file {:?}", error)
+    		}
+    		};
+    	let input: i32 = l.trim().parse().expect("attempted to parse non numeric");
+       	 vec.push(input);
 
-let arr2 = merge_and_count_split_inv(vec1,vec2);
-println!("{:?}  {}", arr2.vec, arr2.count);
+    	}
 
-
-}
+    println!("{:?}", vec);
+          Ok(())
+    }
+  
 
 
 
