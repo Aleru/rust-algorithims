@@ -1,2 +1,2 @@
 # rust-algorithims
-A collection of fun little algorithms in rust!
+A collection of algorithms in rust
