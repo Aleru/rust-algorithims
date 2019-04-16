@@ -88,14 +88,11 @@ fn merge_and_count_split_inv( v1:  Vec<i32>, v2: Vec<i32>) ->   VecAndCount  {
 	}
 	
 
+// make function to open a file and put numbers  into vector
 
+fn file_into_i32_vec(s: &str) -> Result<Vec<i32>,io::Error>{
 
-
-
-fn main() -> io::Result<()> {
-
-	
-	let f = File::open("algo.txt")?;
+	let f = File::open(s)?;
 
 	let reader = BufReader::new(f);
 
@@ -113,9 +110,20 @@ fn main() -> io::Result<()> {
 
 		};
 
+	Ok(vec)
+
+
+}
+
+
+
+fn main()  {
+
+	let mut vec = file_into_i32_vec("algo.txt").unwrap();
+
  	 let vec_and_count_to_parse = sort_and_count_inv(vec);
 	println!("{}", vec_and_count_to_parse.count);
-			  Ok(())
+			  
    
 
  }
@@ -139,4 +147,5 @@ mod tests{
 }
 
 */
+
 
